@@ -1,6 +1,7 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+#include <iostream>
 #include <string>
 
 template<typename T>
@@ -15,7 +16,7 @@ class TPQueue {
  public:
   TPQueue() : head(nullptr) {}
   void push(T);
-  int pop();
+  T pop();
   bool IsEmpty() {
     return head == nullptr;
   }
