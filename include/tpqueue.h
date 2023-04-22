@@ -1,6 +1,7 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+#include <string>
 
 template<typename T>
 class TPQueue {
@@ -15,6 +16,9 @@ class TPQueue {
   TPQueue() : head(nullptr) {}
   void push(T);
   int pop();
+  bool IsEmpty() {
+    return head == nullptr;
+  }
 };
 
 struct SYM {
@@ -27,7 +31,7 @@ void TPQueue<T>::push(T val) {
   Node* newNode = new Node;
   newNode->next = nullptr;
   newNode->value = val;
-  if (!head) {
+  if (IsEmpty()) {
     head = newNode;
     return;
   }
@@ -43,12 +47,11 @@ void TPQueue<T>::push(T val) {
 }
 
 template<typename T>
-int TPQueue<T>::pop() {
-  if (!head) {
-    cout << "Очередь пуста!" << endl;
-    return -1;
+T TPQueue<T>::pop() {
+  if (IsEmpty()) {
+    throw std::string("Empty");
   }
-  int data = head->value.ch;
+  T data = head->value;
   Node* temp = head;
   head = head->next;
   delete temp;
